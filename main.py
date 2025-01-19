@@ -18,15 +18,14 @@ def get_world_bank_data(indicator, country_code, start_year, end_year):
     df = pd.DataFrame(data)
     return df[['date', 'value']].rename(columns={'date': 'year', 'value': indicator})
 
-
-# Get GDP and Inflation data for United States (USA) ( I will add more in the future )
+# Get GDP and Inflation data for United States (USA) (I will add more in the future)
 df_gdp = get_world_bank_data('NY.GDP.MKTP.CD', 'USA', 2000, 2025)
 df_inflation = get_world_bank_data('FP.CPI.TOTL.ZG', 'USA', 2000, 2025)
 
 # Merge dataframes on 'year'
 df_combined = pd.merge(df_gdp, df_inflation, on='year')
 
-# Data Processing (Handling Missing Values and Normalization)
+# Data Processing/Tansformation (Handling Missing Values and Normalization)
 # Handling missing values - drop rows with missing data
 df_combined = df_combined.dropna()
 
